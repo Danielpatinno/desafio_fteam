@@ -56,11 +56,3 @@ flutter pub get
 
 3. Execute o app:
 flutter run
-
-📁 Estrutura de Pastas
-lib/
-├── models/          # Modelos de dados
-├── providers/       # Providers Riverpod
-├── screens/         # Telas principais
-├── services/        # Serviços API
-├── widgets/         # Widgets reutilizáveis
