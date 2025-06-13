@@ -25,10 +25,14 @@ class CharacterDetailModal extends StatelessWidget {
         child: SingleChildScrollView(
           child: LayoutBuilder(
             builder: (context, constraints) {
-              final isSmallScreen = constraints.maxWidth < 500;
-              return isSmallScreen
-                  ? _buildVerticalLayout()
-                  : _buildHorizontalLayout();
+              final isSmallWidth = constraints.maxWidth < 500;
+              final isPortrait = MediaQuery.of(context).orientation == Orientation.portrait;
+
+              if (isSmallWidth || isPortrait) {
+                return _buildVerticalLayout();
+              } else {
+                return _buildHorizontalLayout();
+              }
             },
           ),
         ),
@@ -38,6 +42,7 @@ class CharacterDetailModal extends StatelessWidget {
 
   Widget _buildHorizontalLayout() {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(12),
@@ -111,25 +116,25 @@ class CharacterDetailModal extends StatelessWidget {
 
   Widget _infoRow(String label, String value) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
-      child: RichText(
-        text: TextSpan(
-          children: [
-            TextSpan(
-              text: '$label: ',
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '$label: ',
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
             ),
-            TextSpan(
-              text: value,
-              style: const TextStyle(
-                color: Color(0xFF00FF9C),
-              ),
+          ),
+          Expanded(
+            child: Text(
+              value,
+              style: const TextStyle(color: Color(0xFF00FF9C)),
+              textAlign: TextAlign.left,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

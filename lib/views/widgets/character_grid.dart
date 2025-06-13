@@ -15,10 +15,11 @@ class CharacterGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
+      controller: scrollController, 
       padding: const EdgeInsets.all(8),
       gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: 300,
-        childAspectRatio: 0.7,
+        childAspectRatio: 0.75,
         crossAxisSpacing: 8,
         mainAxisSpacing: 8,
       ),
