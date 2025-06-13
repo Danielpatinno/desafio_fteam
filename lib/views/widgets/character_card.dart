@@ -37,7 +37,6 @@ class CharacterCard extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                // Bordas arredondadas no topo da imagem
                 ClipRRect(
                   borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(10),

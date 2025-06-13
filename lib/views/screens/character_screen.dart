@@ -59,7 +59,12 @@ class _CharacterScreenState extends ConsumerState<CharacterScreen> {
                 scrollController: _scrollController,
               ),
               loading: () => const Center(child: CircularProgressIndicator()),
-              error: (err, _) => Center(child: Text('Erro: $err')),
+              error: (err, _) => Center(
+              child: Text(
+                err.toString().replaceFirst('Exception: ', ''),
+                style: const TextStyle(color: Colors.white),
+              ),
+            ),
             ),
           )
         ],

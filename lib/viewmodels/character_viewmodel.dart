@@ -22,18 +22,20 @@ class CharacterViewModel extends StateNotifier<AsyncValue<List<Character>>> {
     loadCharacters();
   }
 
-  Future<void> loadCharacters({String query = ''}) async {
-    _currentPage = 1;
-    _currentQuery = query;
-    state = const AsyncValue.loading();
+Future<void> loadCharacters({String query = ''}) async {
+  _currentPage = 1;
+  _currentQuery = query;
+  state = const AsyncValue.loading();
 
-    try {
-      _characters = await _apiService.fetchCharacters(query: query, page: _currentPage);
-      state = AsyncValue.data(_characters);
-    } catch (e, s) {
-      state = AsyncValue.error(e, s);
-    }
-  } 
+  try {
+    _characters = await _apiService.fetchCharacters(query: query, page: _currentPage);
+
+    state = AsyncValue.data(_characters);
+  } catch (e, s) {
+    state = AsyncValue.error(e, s);
+  }
+}
+
 
   Future<void> loadNextPage() async {
     _currentPage++;
